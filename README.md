@@ -1,7 +1,5 @@
 # [Docker Calibre Server](https://hub.docker.com/r/rloomans/calibre-server)
 ![Docker Image Version (latest semver)](https://img.shields.io/docker/v/rloomans/calibre-server?sort=semver)
-![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/rloomans/calibre-server)
-![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/rloomans/calibre-server)
 ![Docker Pulls](https://img.shields.io/docker/pulls/rloomans/calibre-server)
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/rloomans/calibre-server/latest)
 
