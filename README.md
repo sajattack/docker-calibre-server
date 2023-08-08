@@ -41,22 +41,24 @@ $ docker run -ti -p 8080:8080 -v /path/to/library:/library -e TRUSTED_HOSTS="web
 You can get the same setup as "Use case 2" with this `docker-compose.yaml`:
 
 ```yaml
-services:
-    calibre:
-        image: rloomans/calibre-server
-        volumes:
-            - /path/to/library:/library
-        ports: 
-            - "8080:8080"
-        depends_on:  # start web1 and web2 before calibre
-            - web1
-            - web2
-        environment:
-            TRUSTED_HOSTS: web1 web2  # whitelist web1 and web2
-    
-    web1:
-        image: nginx:alpine
 
-    web2:
-        image: nginx:alpine
+services:
+  calibre:
+    image: rloomans/calibre-server
+    volumes:
+      - /path/to/library:/library
+    ports: 
+      - "8080:8080"
+    depends_on:  # start web1 and web2 before calibre
+      - web1
+      - web2
+    environment:
+      TRUSTED_HOSTS: web1 web2  # whitelist web1 and web2
+
+  web1:
+    image: nginx:alpine
+
+  web2:
+    image: nginx:alpine
+
 ```
