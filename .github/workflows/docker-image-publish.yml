@@ -11,11 +11,13 @@ name: Publish Docker image
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - "main"
+    tags:
+      - 'v*'
   release:
-    types: [published]
-
-
+    types:
+      - 'published'
 
 jobs:
   push_to_registries:
