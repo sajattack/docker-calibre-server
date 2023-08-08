@@ -3,6 +3,8 @@ name: Docker Image CI
 on:
   pull_request:
     branches: [ "main" ]
+  push:
+    branches: [ "main" ]
 
 jobs:
 
@@ -13,5 +15,5 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag calibre-server:$(date --utc +%Y%m%d%H%M%S)
+      run: docker build . --file Dockerfile --tag calibre-server:$(date +%s)
 
