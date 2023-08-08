@@ -43,10 +43,11 @@ jobs:
         with:
           images: |
             rloomans/calibre-server
-            ghcr.io/calibre-server
+            ghcr.io/rloomans/calibre-server
           flavor: |
             latest=true
           tags: |
+            type=ref,event=tag
             type=schedule,pattern={{date 'YYYYMMDD-hhmmss' tz='Australia/Brisbane'}}
             type=sha
 

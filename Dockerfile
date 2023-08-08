@@ -1,5 +1,13 @@
 FROM --platform=linux/amd64 debian:bookworm-slim AS base
+LABEL name="Calibre Server"
 LABEL maintainer="Robert Loomans <robert@loomans.org>"
+LABEL description="A minimal [Calibre](https://calibre-ebook.com/) installation that runs a Calibre server"
+LABEL url="https://github.com/rloomans/docker-calibre-server"
+LABEL source="https://github.com/rloomans/docker-calibre-server.git"
+LABEL org.opencontainers.image.title="Calibre Server"
+LABEL org.opencontainers.image.authors="Robert Loomans <robert@loomans.org>"
+LABEL org.opencontainers.image.source="https://github.com/rloomans/docker-calibre-server"
+LABEL org.opencontainers.image.description="A minimal [Calibre](https://calibre-ebook.com/) installation that runs a Calibre server"
 
 ARG APT_HTTP_PROXY
 
