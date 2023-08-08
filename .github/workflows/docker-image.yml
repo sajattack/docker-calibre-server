@@ -9,7 +9,8 @@ jobs:
     name: Build the Docker image
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag calibre-server:$(date +%s)
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag calibre-server:$(date +%s)
 

@@ -1,4 +1,5 @@
 FROM --platform=linux/amd64 debian:bookworm-slim AS base
+LABEL maintainer="Robert Loomans <robert@loomans.org>"
 
 ARG APT_HTTP_PROXY
 
