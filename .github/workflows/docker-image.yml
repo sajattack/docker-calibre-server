@@ -3,15 +3,11 @@ name: Docker Image CI
 on:
   pull_request:
     branches: [ "main" ]
-  push:
-    branches: [ "main" ]
 
 jobs:
-
   build:
-
+    name: Build the Docker image
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
