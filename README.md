@@ -5,6 +5,7 @@
 ![Docker Image Build](https://img.shields.io/github/actions/workflow/status/rloomans/docker-calibre-server/docker-image-publish.yml?logo=github&label=image%20build)
 ![GitHub commits since latest release](https://img.shields.io/github/commits-since/rloomans/docker-calibre-server/latest?logo=github&link=https%3A%2F%2Fgithub.com%2Frloomans%2Fdocker-calibre-server%2Fcommits%2Fmain)
 ![GitHub all releases](https://img.shields.io/github/downloads/rloomans/docker-calibre-server/total?logo=github&link=https%3A%2F%2Fgithub.com%2Frloomans%2Fdocker-calibre-server%2Fpkgs%2Fcontainer%2Fcalibre-server)
+
 ![Docker Image Version](https://img.shields.io/docker/v/rloomans/calibre-server?sort=semver&label=image+version&logo=docker&link=http%3A%2F%2Fhub.docker.com%2Fr%2Frloomans%2Fcalibre-server)
 ![Docker Pulls](https://img.shields.io/docker/pulls/rloomans/calibre-server?logo=docker&link=http%3A%2F%2Fhub.docker.com%2Fr%2Frloomans%2Fcalibre-server)
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/rloomans/calibre-server/latest?logo=docker&link=http%3A%2F%2Fhub.docker.com%2Fr%2Frloomans%2Fcalibre-server)
