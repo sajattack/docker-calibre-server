@@ -17,6 +17,7 @@ RUN export DEBIAN_FRONTEND="noninteractive" && \
     apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
+        curl \
         ca-certificates && \
     apt-get clean && \
     rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/*
@@ -28,7 +29,6 @@ ARG CALIBRE_RELEASE="6.24.0"
 RUN export DEBIAN_FRONTEND="noninteractive" && \
     apt-get update && \
     apt-get install -y --no-install-recommends \
-        curl \
         xz-utils && \
     apt-get clean && \
     rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/*
