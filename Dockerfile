@@ -1,4 +1,40 @@
 FROM --platform=linux/amd64 debian:bookworm-slim AS base
+
+ARG APT_HTTP_PROXY
+
+RUN export DEBIAN_FRONTEND="noninteractive" && \
+    if [ -n "$APT_HTTP_PROXY" ]; then \
+        printf 'Acquire::http::Proxy "%s";\n' "${APT_HTTP_PROXY}" > /etc/apt/apt.conf.d/apt-proxy.conf; \
+    fi && \
+    apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y --no-install-recommends \
+        curl \
+        ca-certificates && \
+    apt-get clean && \
+    rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/* /etc/apt/apt.conf.d/apt-proxy.conf
+
+FROM base AS download
+
+ARG CALIBRE_RELEASE="6.24.0"
+
+RUN export DEBIAN_FRONTEND="noninteractive" && \
+    if [ -n "$APT_HTTP_PROXY" ]; then \
+        printf 'Acquire::http::Proxy "%s";\n' "${APT_HTTP_PROXY}" > /etc/apt/apt.conf.d/apt-proxy.conf; \
+    fi && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends \
+        xz-utils && \
+    apt-get clean && \
+    rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/* /etc/apt/apt.conf.d/apt-proxy.conf
+
+RUN curl -o /tmp/calibre-tarball.txz -L "https://download.calibre-ebook.com/${CALIBRE_RELEASE}/calibre-${CALIBRE_RELEASE}-x86_64.txz" && \
+    mkdir -p /opt/calibre && \
+    tar xvf /tmp/calibre-tarball.txz -C /opt/calibre && \
+    rm -rf /tmp/*
+
+FROM base AS runtime
+
 LABEL name="Calibre Server"
 LABEL maintainer="Robert Loomans <robert@loomans.org>"
 LABEL description="A minimal Calibre docker image that runs calibre-server"
@@ -9,38 +45,10 @@ LABEL org.opencontainers.image.authors="Robert Loomans <robert@loomans.org>"
 LABEL org.opencontainers.image.source="https://github.com/rloomans/docker-calibre-server"
 LABEL org.opencontainers.image.description="A minimal Calibre docker image that runs calibre-server"
 
-ARG APT_HTTP_PROXY
-
-RUN if [ -n "$APT_HTTP_PROXY" ]; then printf 'Acquire::http::Proxy "%s";\n' "${APT_HTTP_PROXY}" > /etc/apt/apt.conf.d/apt-proxy.conf; fi
-
 RUN export DEBIAN_FRONTEND="noninteractive" && \
-    apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y --no-install-recommends \
-        curl \
-        ca-certificates && \
-    apt-get clean && \
-    rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/*
-
-FROM base AS download
-
-ARG CALIBRE_RELEASE="6.24.0"
-
-RUN export DEBIAN_FRONTEND="noninteractive" && \
-    apt-get update && \
-    apt-get install -y --no-install-recommends \
-        xz-utils && \
-    apt-get clean && \
-    rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/*
-
-RUN curl -o /tmp/calibre-tarball.txz -L "https://download.calibre-ebook.com/${CALIBRE_RELEASE}/calibre-${CALIBRE_RELEASE}-x86_64.txz" && \
-    mkdir -p /opt/calibre && \
-    tar xvf /tmp/calibre-tarball.txz -C /opt/calibre && \
-    rm -rf /tmp/*
-
-FROM base AS runtime
-
-RUN export DEBIAN_FRONTEND="noninteractive" && \
+    if [ -n "$APT_HTTP_PROXY" ]; then \
+        printf 'Acquire::http::Proxy "%s";\n' "${APT_HTTP_PROXY}" > /etc/apt/apt.conf.d/apt-proxy.conf; \
+    fi && \
     apt-get update && \
     apt-get install -y --no-install-recommends \
         ca-certificates \
@@ -60,7 +68,7 @@ RUN export DEBIAN_FRONTEND="noninteractive" && \
         libxdamage1 \
         xdg-utils && \
     apt-get clean && \
-    rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/*
+    rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/* /etc/apt/apt.conf.d/apt-proxy.conf
 
 COPY --from=download /opt/calibre /opt/calibre
 
