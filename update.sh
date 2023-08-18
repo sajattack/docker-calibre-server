@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-TAG="$(curl 'https://api.github.com/repos/kovidgoyal/calibre/releases?per_page=1' | jq -r '.[0].tag_name')"
+TAG="$(curl -sS 'https://api.github.com/repos/kovidgoyal/calibre/releases?per_page=1' | jq -r '.[0].tag_name')"
 
 if [[ ! $TAG =~ ^v[0-9.]+$ ]]; then
     echo "skipping invalid tag: $TAG"
