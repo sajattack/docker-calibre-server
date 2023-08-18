@@ -28,7 +28,8 @@ RUN export DEBIAN_FRONTEND="noninteractive" && \
     apt-get clean && \
     rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/* /etc/apt/apt.conf.d/apt-proxy.conf
 
-RUN curl -o /tmp/calibre-tarball.txz -L "https://download.calibre-ebook.com/${CALIBRE_RELEASE}/calibre-${CALIBRE_RELEASE}-x86_64.txz" && \
+RUN curl -o /tmp/calibre-tarball.txz -L \
+        "https://github.com/kovidgoyal/calibre/releases/download/v${CALIBRE_RELEASE}/calibre-${CALIBRE_RELEASE}-x86_64.txz" && \
     mkdir -p /opt/calibre && \
     tar xvf /tmp/calibre-tarball.txz -C /opt/calibre && \
     rm -rf /tmp/*
