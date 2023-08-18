@@ -19,5 +19,5 @@ git add Dockerfile
 git commit -m "update Calibre to ${TAG}"
 git tag -f "${TAG}"
 
-git push -f --tags
+git push --force-with-lease --tags
 git push origin main
