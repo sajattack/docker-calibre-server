@@ -16,7 +16,7 @@ RUN export DEBIAN_FRONTEND="noninteractive" && \
 
 FROM base AS download
 
-ARG CALIBRE_RELEASE="6.24.0"
+ARG CALIBRE_RELEASE="6.25.0"
 
 RUN export DEBIAN_FRONTEND="noninteractive" && \
     if [ -n "$APT_HTTP_PROXY" ]; then \
