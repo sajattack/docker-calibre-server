@@ -22,7 +22,5 @@ XDG_RUNTIME_DIR=/tmp/runtime-root /usr/bin/calibre-server \
     --disable-use-bonjour \
     --enable-local-write \
     --port=${PORT} \
-    #--userdb "/library/users.sqlite" \
-    #--enable-auth \
     "$@" \
     "/library"
