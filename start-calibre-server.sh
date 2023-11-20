@@ -23,5 +23,7 @@ XDG_RUNTIME_DIR=/tmp/runtime-root /usr/bin/calibre-server \
     --enable-local-write \
     --trusted-ips="${TRUSTED_IPS}" \
     --port=${PORT} \
+    --userdb "/library/users.sqlite" \
+    --enable-auth
     "$@" \
     "/library"
