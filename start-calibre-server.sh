@@ -22,5 +22,6 @@ XDG_RUNTIME_DIR=/tmp/runtime-root /usr/bin/calibre-server \
     --disable-use-bonjour \
     --enable-local-write \
     --port=${PORT} \
+    --trusted-ips ${TRUSTED_IPS} \
     "$@" \
     "/library"
