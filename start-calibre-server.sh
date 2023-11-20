@@ -14,9 +14,14 @@ echo "trusted ips: ${TRUSTED_IPS}"
 
 touch "/library/metadata.db"
 
+if [ -z ${PORT} ]; then
+   PORT=8080
+fi
+
 XDG_RUNTIME_DIR=/tmp/runtime-root /usr/bin/calibre-server \
     --disable-use-bonjour \
     --enable-local-write \
     --trusted-ips="${TRUSTED_IPS}" \
+    --port=${PORT} \
     "$@" \
     "/library"
